@@ -1,0 +1,53 @@
+.card{
+    width: 100%;
+    background: #ccc;
+    margin: auto;
+    margin-bottom: 30px;
+}
+.card__container-image{
+    width: 100%;
+}
+.card__container-image-img{
+    width: 100%;
+}
+.card__container-name-h3{
+    font-size: 1.8rem;
+    text-decoration: underline;
+}
+.card__container-actions{
+    padding: 20px;
+}
+.card__container-actions-item{
+    margin-bottom: 10px;
+    width: 100%;
+}
+.card__container-actions-item-btn{
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    display: block;
+    border-radius: 9px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.infobtn{
+    background-color: #95a5a6;   
+}
+.addbtn{
+    background-color: #2ecc71;
+    width: 100%;
+}
+.removebtn{
+    background-color: #e74c3c;
+    width: 100%;
+}
+
+@media screen and (min-width:900px){
+    .card{
+        margin: auto;
+        width: 80%;
+        margin-bottom: 50px;
+    }
+}
