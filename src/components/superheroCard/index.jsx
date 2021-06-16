@@ -5,10 +5,13 @@ import './style.css'
 const SuperheroCard = ({ image, name, id, role }) => {
 
     const [heroInTeam, setHeroInTeam] = React.useState(false);
-    const [error, setError] = React.useState("");
+    // const [error, setError] = React.useState("");
 
     const addToTeam = () => {
         let heros = [];
+        let herosGood = 0;
+        let herosBad = 0;
+        let herosNeutral = 0;
         const heroData = {
             id,
             role
@@ -16,12 +19,26 @@ const SuperheroCard = ({ image, name, id, role }) => {
 
         if (localStorage.getItem("team") !== null) {
             heros = JSON.parse(localStorage.getItem("team"))
+            heros.forEach(hero => {
+                if (hero.role === "good") {
+                    herosGood++;
+                }
+                if (hero.role === "bad") {
+                    herosBad++;
+                }
+                if (hero.role === "neutral") {
+                    herosNeutral++;
+                }
+            })
         }
         else {
             heros = [];
         }
-        if(heros.length===6){
-            return alert("no space");
+        if (role === "good" && herosGood === 3) return alert("You can't have more than 3 good heros")
+        if (role === "bad" && herosBad === 3) return alert("You can't have more than 3 bad heros")
+        if (role === "neutral" && herosNeutral === 3) return alert("You can't have more than 3 neutral heros")
+        if (heros.length === 6) {
+            return alert("You cant't have more than 6 heros in your team");
         }
         heros.push(heroData);
         localStorage.setItem("team", JSON.stringify(heros));
@@ -29,29 +46,29 @@ const SuperheroCard = ({ image, name, id, role }) => {
     }
 
     const removefromTeam = () => {
-        let heros  = [];
-        if (localStorage.getItem("team") !== null){
+        let heros = [];
+        if (localStorage.getItem("team") !== null) {
             heros = JSON.parse(localStorage.getItem("team"))
             let i;
-            for(i=0; i<heros.length; i++){
-                if(heros[i].id === id){
-                    heros.splice(i,1);
+            for (i = 0; i < heros.length; i++) {
+                if (heros[i].id === id) {
+                    heros.splice(i, 1);
                 }
             }
-            localStorage.setItem("team",JSON.stringify(heros));
+            localStorage.setItem("team", JSON.stringify(heros));
             setHeroInTeam(false)
         }
     }
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         let team = [];
-        if(localStorage.getItem("team") !== null){
+        if (localStorage.getItem("team") !== null) {
             team = JSON.parse(localStorage.getItem("team"))
-            team.forEach(hero=>{
-                if(hero.id === id) return setHeroInTeam(true)
+            team.forEach(hero => {
+                if (hero.id === id) return setHeroInTeam(true)
             });
         }
-    },[])
+    }, [])
 
     return (
         <>

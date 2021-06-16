@@ -1,0 +1,142 @@
+.homePage__container{
+    padding: 30px;
+}
+
+
+.homePage__noHeros,
+.homePage__loading{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.homePage__noHeros-container{
+    text-align: center;
+    user-select: none;
+    color: #aaa;
+}
+.homePage__noHeros-container-h3{
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.homePage__noHeros-container-link{
+    font-size: 1.5rem;
+    color: #ccc;
+    text-decoration: underline;
+}
+
+.homePage__loading-circle{
+    height: 60px;
+    width: 60px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: loading 2s infinite;
+}
+
+
+.homePage__team-info{
+    background: #ccc;
+    padding: 6px;
+    border-radius: 7px;
+    webkit-box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
+    text-align: center;
+}
+.homePage__team-info-box{
+    margin-bottom: 20px;    
+}
+.homePage__team-info-title-h2{
+    font-size: 1.8rem;
+    margin-bottom: 7px;
+}
+.homePage__team-info-progressBar-item{
+    font-size: 1.2rem;
+}
+.homePage__team-info-progressBar-item-name{
+    font-weight: 500;
+    color: #333;
+}
+.homePage__team-info-progressBar-item-value{
+    color: #666;
+}
+
+@keyframes loading {
+    to{
+        transform: rotateZ(360deg);
+    }
+}
+
+.homePage__team-heros{
+    margin-top: 30px;
+}
+.homePage__team-heros-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.homePage__superhero{
+    background: #bbb;
+}
+.homePage__superhero-image-img{
+    width: 100%;
+}
+.homePage__superhero-name{
+    text-align: center;
+    font-size: 2rem;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+.homePage__superhero-action{
+    width: 80%;
+    margin: auto;
+}
+.homePage__superhero-action-btn{
+    margin-top: 20px;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.homePage__superhero-action-btn:hover{
+    opacity: .6;
+}
+
+@media only screen and (min-width:900px){
+    .homePage__container{
+        width: 60%;
+        margin: auto;
+    }
+    .homePage__team-info{
+        width: 90%;
+        margin: auto;
+        display: flex;
+        padding: 20px 50px;
+        justify-content: space-between;
+    }
+
+    .homePage__team-heros-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width:1200px){
+    .homePage__team-info{
+        padding: 20px 100px;
+    }
+    .homePage__team-heros-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

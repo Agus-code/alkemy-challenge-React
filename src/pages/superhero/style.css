@@ -26,10 +26,14 @@
 .heroPage__box-info-data{
     margin-bottom: 20px;
     font-size: 1.2rem;
-    color: #aaa;
+    color: #999;
 }
 .heroPage__box-info-data-ul-item{
     margin-bottom: 4px;
+}
+.heroPage__box-info-data-ul-item-bold{
+    font-weight: 700;
+    color: #bbb;
 }
 
 .heroPage__loading{
@@ -50,21 +54,26 @@
     border-top-color: transparent;
     animation: loading 1s infinite;
 }
+@keyframes loading {
+    to{
+        transform: rotateZ(360deg);
+    }
+}
 
 .heroPage__box-info-actions-btn{
     border: none;
     outline: none;
     cursor: pointer;
-    background: #2ecc71;
     padding: 12px;
     border-radius: 7px;
     font-size: 1.2rem;
     font-weight: 600;
 }
-@keyframes loading {
-    to{
-        transform: rotateZ(360deg);
-    }
+.heroPage__box-info-actions-btn.add__btn{
+    background: #2ecc71;
+}
+.heroPage__box-info-actions-btn.remove__btn{
+    background: #e74c3c;
 }
 
 @media only screen and (min-width:900px) {

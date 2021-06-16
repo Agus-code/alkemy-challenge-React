@@ -10,7 +10,7 @@ const Search = () => {
 
     const [searchTyped, setSearchTyped] = React.useState("");
     const [typedError, setTypedError] = React.useState("");
-    const [cardsData, setCardsData] = React.useState();
+    const [cardsData, setCardsData] = React.useState(undefined);
     const [loading, setLoading] = React.useState(false);
 
     const history = useHistory();
@@ -35,7 +35,7 @@ const Search = () => {
         await axios(`https://superheroapi.com/api/1911355292361972/search/${searchTyped}`)
             .then(res => {
                 setLoading(false)
-                if(res.data.error === "character with given name not found") {
+                if (res.data.error === "character with given name not found") {
                     return setCardsData(null)
                 }
                 return setCardsData(res.data.results)
@@ -63,6 +63,7 @@ const Search = () => {
                                 className="search__article-box-input"
                                 value={searchTyped}
                                 onChange={e => setSearchTyped(e.target.value)}
+                                onKeyPress={e=> e.code==='Enter' && findCards()}
                             />
                             <button className="search__article-box-btn" onClick={findCards}>
                                 Search
@@ -76,27 +77,26 @@ const Search = () => {
                     </article>
                     <article className="search__article">
                         <div className="search__article-cards">
-                            {cardsData === null && 
+                            {cardsData === null &&
                                 <h4 className="search__article-cards-noOne">
                                     Characters with given name not found
                                 </h4>
                             }
-                            {cardsData === undefined && cardsData !== null && loading
-                                ?
+                            {loading &&
                                 <div className="search__article-cards-loading">
                                     <div className="search__article-cards-loading-circle"></div>
                                 </div>
-                                :
+                            }
+                            {cardsData !== undefined && cardsData !== null &&
                                 <div className="search__article-cards-container">
-                                    {cardsData?.map((hero,index)=>{
-                                        
+                                    {cardsData.map((hero) => {  
                                         return (
-                                            <>  
-                                                <SuperheroCard 
-                                                    key={index}
+                                            <>
+                                                <SuperheroCard
+                                                    key={`${hero.id}`}
                                                     image={hero.image.url}
                                                     name={hero.name}
-                                                    id={hero.id} 
+                                                    id={hero.id}
                                                     role={hero.biography["alignment"]}
                                                 />
                                             </>
@@ -104,11 +104,10 @@ const Search = () => {
                                     })}
                                 </div>
                             }
-                            
                         </div>
                     </article>
                 </div>
-            </section>
+        </section>
         </>
     )
 }
